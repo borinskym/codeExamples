@@ -1,10 +1,10 @@
 package event.rest;
 
 
-import com.agt.mes.trigger.event.Event;
-import com.agt.mes.trigger.event.EventResponse;
-import com.agt.mes.trigger.event.EventsFetcher;
 import com.google.gson.Gson;
+import event.Event;
+import event.EventResponse;
+import event.EventsFetcher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,18 +20,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.agt.mes.trigger.config.CachingConfig.EVENTS_CACHE;
+import static config.CachingConfig.EVENTS_CACHE;
 import static java.lang.String.format;
 
 @Component
 @Slf4j
-public class RestEventsFetcher implements EventsFetcher {
+public class RestEventsFetcherWithCache implements EventsFetcher {
 
     private final String hostName;
     private final RestTemplate restTemplate;
 
     @Autowired
-    public RestEventsFetcher(@Value("${event-service.url}") String hostName, RestTemplate restTemplate) {
+    public RestEventsFetcherWithCache(@Value("${event-service.url}") String hostName, RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
         this.hostName = hostName;
     }
