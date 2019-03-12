@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.index.IndexField;
 import org.springframework.data.mongodb.core.index.IndexInfo;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import repository.SomeKindOfEntity;
+import repository.SomeKindOfEntityWithCompoundIndex;
 import repository.SomeKindOfRepository;
 import testRestWithQueryParams.MongoRepositoryContext;
 
@@ -54,7 +54,7 @@ public class EnsureIndex {
 
     @Test
     public void shouldEnsureIndex() {
-        someKindOfRepository.save(new SomeKindOfEntity());
+        someKindOfRepository.save(new SomeKindOfEntityWithCompoundIndex());
 
         assertThat(sparseIndexes(), is(asList(
                 SparseIndexInfo.from("_id_", false, singletonList(create("_id", ASC))),

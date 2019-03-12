@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import repository.SomeKindOfEntity;
+import repository.SomeKindOfEntityWithCompoundIndex;
 import repository.SomeKindOfRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,11 +30,11 @@ public class IntegrationTestWIthMongoAndInjectVariable {
     @Test
     public void someTestThatUsesRepository() {
         // now you can use all the pre-configured functioned of spring-mongodb
-        someKindOfRepository.save(new SomeKindOfEntity());
+        someKindOfRepository.save(new SomeKindOfEntityWithCompoundIndex());
         someKindOfRepository.delete("ASD");
         someKindOfRepository.findAll();
 
         //this is the addition, spring knows how to add this code
-        someKindOfRepository.additionalFunctionToRepository(new SomeKindOfEntity());
+        someKindOfRepository.additionalFunctionToRepository(new SomeKindOfEntityWithCompoundIndex());
     }
 }
